@@ -115,9 +115,14 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
+  grunt.registerTask('deploy', function() {
+    grunt.task.run('build');
+    grunt.option('prod', true);
+    grunt.task.run('upload');
+  }
+    /* test,  'build', 'upload'*/
       // add your production server task here
-  ]);
+  );
 
 
 };
