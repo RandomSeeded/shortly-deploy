@@ -1,36 +1,24 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/testdb2');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(callback) {
-  var urlSchema = mongoose.Schema({
-    id: Number,
-    url: String,
-    base_url: String,
-    code: String,
-    title: String,
-    visits: Number,
-    createdAt: {type: Date, default: Date.now},
-    lastUpdatedAt: {type: Date, default: Date.now}
-  });
-  var userSchema = mongoose.Schema({
-    id: Number,
-    username: String,
-    password: String, 
-    createdAt: {type: Date, default: Date.now},
-    lastUpdatedAt: {type: Date, default: Date.now}
-  });
-});
+// db.once('open', function(callback) {
+//   db.urlSchema = mongoose.Schema({
+//     url: String,
+//     base_url: String,
+//     code: String,
+//     title: String,
+//     visits: Number,
+//     createdAt: {type: Date, default: Date.now},
+//     lastUpdatedAt: {type: Date, default: Date.now}
+//   });
+// });
 
-var User = mongoose.model('User', userSchema);
+module.exports = db;
+//module.exports.userSchema = userSchema;
 
-var myUser = new User({
-  id: 1,
-  username: 'Kyle',
-  password: 'Cho'
 
-}).save();
 
 
 //   var Bookshelf = require('bookshelf');
